@@ -22,17 +22,18 @@ Installation & Usage
 
 1. Clone the repository
 
-git clone https://github.com/your-username/water-intake-tracker.git
-cd water-intake-tracker
+  git clone https://github.com/your-username/water-intake-tracker.git
+  cd water-intake-tracker
 
 2. Run the command by navigating to project folder
    npm i    (to install dependencies and node modules)
 
-3.To run the project run command
-  npm run dev
+3. Create .env file and add
+   MONGODB_URI=mongodb://localhost:27017/watertracker
+   PORT=3000
 
-4. Create .env file and add
-  MONGODB_URI=mongodb://localhost:27017/watertracker
-  PORT=3000
+
+4. To run the project run command
+   npm run dev
    the project will be running on
    http://localhost:3000/
