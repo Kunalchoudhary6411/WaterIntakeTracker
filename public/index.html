@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaTracker - Water Intake Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                       
+                        <h1>AquaTracker</h1>
+                    </div>
+                    
+                    <nav class="nav">
+                        <button class="nav-btn active" data-tab="dashboard">
+                            Dashboard
+                        </button>
+                        <button class="nav-btn" data-tab="history">
+                           
+                            History
+                        </button>
+                    </nav>
+                    
+                    <button class="settings-btn" id="settingsBtn">
+
+                        Set Limit
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="container">
+                <div id="dashboard" class="tab-content active">
+                    <div class="progress-card">
+                        <div class="progress-header">
+                            <div class="progress-info">
+                                <h3>Daily Progress</h3>
+                            </div>
+                            <div class="progress-stats">
+                                <div class="progress-percentage" id="progressPercentage">0%</div>
+                                <div class="progress-amount" id="progressAmount">0 / 2000 ml</div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-bar-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                                <div class="progress-wave"></div>
+                            </div>
+                            <div class="progress-goal-indicator" id="goalIndicator"></div>
+                        </div>
+                        
+                        <div class="progress-message" id="progressMessage">
+                            2000 ml to go
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card orange">
+                            <div class="stat-icon">
+                              
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-title">Current Streak</div>
+                                <div class="stat-value" id="streakValue">0</div>
+                                <div class="stat-subtitle">days</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card blue">
+                            <div class="stat-icon">
+                               
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-title">Today's Goal</div>
+                                <div class="stat-value" id="goalValue">2000 ml</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card green">
+                            <div class="stat-icon">
+                               
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-title">Times Logged</div>
+                                <div class="stat-value" id="intakeCount">0</div>
+                                <div class="stat-subtitle">today</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card purple">
+                            <div class="stat-icon">
+                               
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-title">Progress</div>
+                                <div class="stat-value" id="progressStat">0%</div>
+                                <div class="stat-subtitle">of daily goal</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="add-water-card">
+                        <div class="card-header">
+                           
+                            <h3>Add Water Intake</h3>
+                        </div>
+
+                        <form id="addWaterForm" class="add-water-form">
+                            <div class="form-row">
+                                <input type="number" id="waterAmount" placeholder="Enter amount" step="0.1" min="0" required>
+                                <select id="waterUnit">
+                                    <option value="ml">ml</option>
+                                    <option value="L">L</option>
+                                    <option value="oz">oz</option>
+                                    <option value="cups">cups</option>
+                                </select>
+                                <button type="submit" class="add-btn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="12" y1="5" x2="12" y2="19"/>
+                                        <line x1="5" y1="12" x2="19" y2="12"/>
+                                    </svg>
+                                    Add
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="quick-add">
+                            <h4>Quick Add</h4>
+                            <div class="quick-buttons" id="quickButtons">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-intakes-card">
+                        <div class="card-header">
+                           
+                            <h3>Recent Intakes</h3>
+                        </div>
+                        <div id="recentIntakes" class="recent-intakes-list">
+                            <p class="no-intakes">No water intake recorded today</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="history" class="tab-content">
+                    <div class="history-card">
+                        <div class="card-header">
+                            
+                            <h3>Weekly Overview</h3>
+                        </div>
+                        
+                        <div class="weekly-stats" id="weeklyStats">
+                        </div>
+
+                        <div class="weekly-chart" id="weeklyChart">
+                        </div>
+                    </div>
+
+                    <div class="history-card">
+                        <div class="card-header">
+                            <h3>Daily History</h3>
+                        </div>
+                        <div id="dailyHistory" class="daily-history">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div id="settingsModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                       
+                        <h2>Settings</h2>
+                    </div>
+                    <button class="close-btn" id="closeSettings">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <form id="settingsForm" class="settings-form">
+                    <div class="form-group">
+                        <label for="dailyGoalAmount">Daily Goal</label>
+                        <div class="input-group">
+                            <input type="number" id="dailyGoalAmount" min="1" step="0.1" required>
+                            <select id="dailyGoalUnit">
+                                <option value="ml">ml</option>
+                                <option value="L">L</option>
+                                <option value="oz">oz</option>
+                                <option value="cups">cups</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="preferredUnit">Preferred Unit</label>
+                        <select id="preferredUnit">
+                            <option value="ml">Milliliters (ml)</option>
+                            <option value="L">Liters (L)</option>
+                            <option value="oz">Fluid Ounces (oz)</option>
+                            <option value="cups">Cups</option>
+                        </select>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" id="cancelSettings">Cancel</button>
+                        <button type="submit" class="btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="loadingOverlay" class="loading-overlay">
+            <div class="loading-spinner">
+                <p>Loading your water tracker...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
