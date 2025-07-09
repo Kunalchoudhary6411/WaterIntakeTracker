@@ -31,5 +31,8 @@ cd water-intake-tracker
 3.To run the project run command
   npm run dev
 
-4. the project will be running on
+4. Create .env file and add
+  MONGODB_URI=mongodb://localhost:27017/watertracker
+  PORT=3000
+   the project will be running on
    http://localhost:3000/
